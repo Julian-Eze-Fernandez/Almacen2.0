@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <TNProductos>
+    <Categoria>Alimentos</Categoria>
+    <Codigo>2</Codigo>
+    <Nombre>vrr</Nombre>
+    <Precio>43</Precio>
+  </TNProductos>
+</DocumentElement>
