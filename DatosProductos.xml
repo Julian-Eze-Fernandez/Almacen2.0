@@ -2,8 +2,8 @@
 <DocumentElement>
   <TNProductos>
     <Categoria>Alimentos</Categoria>
-    <Codigo>2</Codigo>
-    <Nombre>vrr</Nombre>
-    <Precio>43</Precio>
+    <Codigo>1</Codigo>
+    <Nombre>1</Nombre>
+    <Precio>1</Precio>
   </TNProductos>
 </DocumentElement>
