@@ -10,6 +10,7 @@ namespace Backend
     public class Productos
     {
         public DataTable datatable { get; set; } = new DataTable() { TableName = "TNProductos" };
+        public DataTable dtTotales { get; set; } = new DataTable() { TableName = "TNProCargados" };
 
         public Productos()
         {
@@ -18,7 +19,13 @@ namespace Backend
             datatable.Columns.Add("Nombre");
             datatable.Columns.Add("Precio");
 
+
+            dtTotales.Columns.Add("Tipo de producto");
+            dtTotales.Columns.Add("Totales");
+
+            Leer_dtTotales();
             Leer_DataTable();
+
         }
 
         //Metodo para cargar datos a la tabla.
@@ -31,9 +38,6 @@ namespace Backend
             datatable.Rows[i]["Codigo"] = producto.CodigoProducto;
             datatable.Rows[i]["Nombre"] = producto.NombreProducto;
             datatable.Rows[i]["Precio"] = producto.PrecioProducto;
-
-            GuardarDatos();
-
         }
 
         //Metodo que lee los datos del Data Grid View.
@@ -45,9 +49,59 @@ namespace Backend
             }
         }
 
+        //Metodo que lee los datos del Data Grid View Productos Cargados.
+        public void Leer_dtTotales()
+        {
+            if (System.IO.File.Exists(@"D:\Vs2022\Almacen2.0\TotalProductos.xml"))
+            {
+                dtTotales.ReadXml(@"D:\Vs2022\Almacen2.0\TotalProductos.xml");
+            }
+            else
+            {
+                dtTotales.Rows.Add("Alimenticios");
+                dtTotales.Rows.Add("Bebidas");
+                dtTotales.Rows.Add("Limpieza");
+            }
+        }
+
+        //Metodo que guarda los datos de los Data Grid View en un Xml.
         public void GuardarDatos()
         {
             datatable.WriteXml(@"D:\Vs2022\Almacen2.0\DatosProductos.xml");
+            dtTotales.WriteXml(@"D:\Vs2022\Almacen2.0\TotalProductos.xml");
+        }
+
+        public void contar(ref int contaralimentos, ref int contarbebidas, ref int contarlimpieza, string categoria)
+        {
+            if (categoria == "Alimentos")
+            {
+                contaralimentos++;
+            }
+            else if (categoria == "Bebidas")
+            {
+                contarbebidas++;
+            }
+            else if (categoria == "Limpieza")
+            {
+                contarlimpieza++;
+            }
+        }
+
+        //Metodo que resta productos
+        public void Descontar(ref int contarAlimentos, ref int contarBebidas, ref int contarLimpieza, string categoria)
+        {
+            if (categoria == "Alimentos")
+            {
+                contarAlimentos--;
+            }
+            else if (categoria == "Bebidas")
+            {
+                contarBebidas--;
+            }
+            else if (categoria == "Limpieza")
+            {
+                contarLimpieza--;
+            }
         }
     }
 }

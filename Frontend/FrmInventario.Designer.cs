@@ -228,7 +228,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProCargados.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvProCargados.Size = new System.Drawing.Size(245, 126);
+            this.dgvProCargados.Size = new System.Drawing.Size(245, 102);
             this.dgvProCargados.TabIndex = 39;
             // 
             // FrmInventario

@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <TNProCargados>
+    <Tipo_x0020_de_x0020_producto>Alimenticios</Tipo_x0020_de_x0020_producto>
+    <Totales>1</Totales>
+  </TNProCargados>
+  <TNProCargados>
+    <Tipo_x0020_de_x0020_producto>Bebidas</Tipo_x0020_de_x0020_producto>
+    <Totales>0</Totales>
+  </TNProCargados>
+  <TNProCargados>
+    <Tipo_x0020_de_x0020_producto>Limpieza</Tipo_x0020_de_x0020_producto>
+    <Totales>0</Totales>
+  </TNProCargados>
+</DocumentElement>
