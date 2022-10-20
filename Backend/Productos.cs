@@ -14,12 +14,13 @@ namespace Backend
 
         public Productos()
         {
+            //Creamos las columnas del nuestro DataGridView.
             datatable.Columns.Add("Categoria");
             datatable.Columns.Add("Codigo");
             datatable.Columns.Add("Nombre");
             datatable.Columns.Add("Precio");
 
-
+            //Creamos las columnas del nuestro DataGridView ProductosCargados.
             dtTotales.Columns.Add("Tipo de producto");
             dtTotales.Columns.Add("Totales");
 
@@ -40,7 +41,7 @@ namespace Backend
             datatable.Rows[i]["Precio"] = producto.PrecioProducto;
         }
 
-        //Metodo que lee los datos del Data Grid View.
+        //Metodo que lee los datos del DataGridView.
         public void Leer_DataTable()
         {
             if (System.IO.File.Exists(@"D:\Vs2022\Almacen2.0\DatosProductos.xml"))
@@ -49,28 +50,31 @@ namespace Backend
             }
         }
 
-        //Metodo que lee los datos del Data Grid View Productos Cargados.
+        //Metodo que lee los datos del DataGridView ProductosCargados.
         public void Leer_dtTotales()
         {
+            //Si existen datos los leemos.
             if (System.IO.File.Exists(@"D:\Vs2022\Almacen2.0\TotalProductos.xml"))
             {
                 dtTotales.ReadXml(@"D:\Vs2022\Almacen2.0\TotalProductos.xml");
             }
             else
             {
+                //Sino lo añadimos.
                 dtTotales.Rows.Add("Alimenticios");
                 dtTotales.Rows.Add("Bebidas");
                 dtTotales.Rows.Add("Limpieza");
             }
         }
 
-        //Metodo que guarda los datos de los Data Grid View en un Xml.
+        //Metodo que guarda los datos de los DataGridView en un Xml.
         public void GuardarDatos()
         {
             datatable.WriteXml(@"D:\Vs2022\Almacen2.0\DatosProductos.xml");
             dtTotales.WriteXml(@"D:\Vs2022\Almacen2.0\TotalProductos.xml");
         }
 
+        //Metodo que cuenta los productos segun categoria.
         public void contar(ref int contaralimentos, ref int contarbebidas, ref int contarlimpieza, string categoria)
         {
             if (categoria == "Alimentos")
@@ -87,7 +91,7 @@ namespace Backend
             }
         }
 
-        //Metodo que resta productos
+        //Metodo que resta los productos segun categoria.
         public void Descontar(ref int contarAlimentos, ref int contarBebidas, ref int contarLimpieza, string categoria)
         {
             if (categoria == "Alimentos")

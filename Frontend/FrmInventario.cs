@@ -31,14 +31,17 @@ namespace Frontend
             dgvInventario.DataSource = productos.datatable;                      
             dgvProCargados.DataSource = productos.dtTotales;
 
+            //Leemos el xml haber si hay datos guardados.
             if (System.IO.File.Exists(@"D:\Vs2022\Almacen2.0\TotalProductos.xml"))
             {
+                //Si los hay le damos el valor ya existente.
                 contAlimentos = Convert.ToInt32(dgvProCargados.Rows[0].Cells[1].Value);
                 contBebidas = Convert.ToInt32(dgvProCargados.Rows[1].Cells[1].Value);
                 contLimpieza = Convert.ToInt32(dgvProCargados.Rows[2].Cells[1].Value);
             }
             else 
             {
+                //Sino las inicializamos en 0 y empezamos a ocntar.
                 contAlimentos = 0;
                 contBebidas = 0;
                 contLimpieza = 0;
@@ -47,7 +50,7 @@ namespace Frontend
                 dgvProCargados.Rows[2].Cells[1].Value = contLimpieza;
             }
         }
-
+        //Boton para cargar datos en el DataGridView.
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (!Error())
@@ -60,15 +63,18 @@ namespace Frontend
                 productos.CargarProducto(producto);
                 LimpiarPantalla();
 
+                //Metodo que cuenta las categorias que se van a cargar en el DataGridView ProductosCargados.
                 productos.contar(ref contAlimentos, ref contBebidas, ref contLimpieza, producto.CategoriaProducto);
                 
                 dgvProCargados.Rows[0].Cells[1].Value = Convert.ToString(contAlimentos);
                 dgvProCargados.Rows[1].Cells[1].Value = Convert.ToString(contBebidas);
                 dgvProCargados.Rows[2].Cells[1].Value = Convert.ToString(contLimpieza);
+
                 productos.GuardarDatos();
             }
         }
 
+        //Boton para borrar datos del DataGridView.
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             //Validacion por si se quiere borrar algo no seleccionado.
@@ -78,12 +84,14 @@ namespace Frontend
             }
             else
             {
+                //Descontamos las categorias que se van a elimiar en el DataGridView ProductosCargados.
                 productos.Descontar(ref contAlimentos, ref contBebidas, ref contLimpieza, dgvInventario.CurrentRow.Cells[0].Value.ToString());
 
                 dgvProCargados.Rows[0].Cells[1].Value = Convert.ToString(contAlimentos);
                 dgvProCargados.Rows[1].Cells[1].Value = Convert.ToString(contBebidas);
                 dgvProCargados.Rows[2].Cells[1].Value = Convert.ToString(contLimpieza);
 
+                //Removemos la fila del DataGridView.
                 dgvInventario.Rows.Remove(dgvInventario.CurrentRow);
 
                 productos.GuardarDatos();
@@ -91,7 +99,7 @@ namespace Frontend
         }
 
 
-        //Metodo que busca errores 
+        //Metodo que busca errores. 
         private bool Error()
         {
             bool bandera = false;      
